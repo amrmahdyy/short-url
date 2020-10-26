@@ -3,12 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <title>Document</title>
   </head>
   <body>
-    <form action="/short_url/new" method="POST">
-      <input type="url" name="original_url" />
-      <button type="submit">Submit</button>
-    </form>
+    <h2>Short URL generator</h2>
+    <div class="container">
+      <form action="/short_url/new" method="POST">
+        <div class="form-group">
+          <label for="url">Enter original url </label>
+          <input
+            type="url"
+            name="original_url"
+            id="url"
+            class="form-control"
+            placeholder=""
+          />
+        </div>
+        <button type="submit" class="btn btn-success btn-block">
+          Generate
+        </button>
+      </form>
+    </div>
   </body>
 </html>

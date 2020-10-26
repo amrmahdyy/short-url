@@ -9,9 +9,15 @@ const Short_url = mongoose.model("Short_url", urlSchema);
 
 router.post("/short_url/new", async (req, res) => {
   const { original_url } = req.body;
+
   const hostName = new URL(original_url).hostname;
   try {
-    result = await validateUrl(hostName);
+    const checkUniqureUrl = await Short_url.find({
+      original_url: original_url,
+    });
+    if (checkUniqureUrl.length != 0)
+      throw { error: "this url is saved before" };
+    const result = await validateUrl(hostName);
     const newDoc = new Short_url({
       original_url: original_url,
       short_url: shortUrl,

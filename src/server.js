@@ -33,11 +33,9 @@ app.get("/", (req, res) => {
 
 // the user enters the short url and it will redirect to the linked url with the short url
 app.get("/api/shorturl/:shortUrl", async (req, res) => {
-  console.log(req.params.shortUrl);
   try {
     const urlDoc = await Short_url.findOne({ short_url: req.params.shortUrl });
     if (!urlDoc) res.status(400).json({ error: "" });
-    console.log(urlDoc, 121212);
     res.status(300).redirect(urlDoc.original_url);
   } catch (e) {
     res.status(400).send("cannot find this short url");
